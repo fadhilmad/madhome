@@ -2,65 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function index()
     {
-        return view('auth.login');
-    }
-
-    public function doLogin(Request $request)
-    {
-        // return $request->all();
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('dashboard');
+        if (Auth::check()) {
+            return redirect()->to(route('dashboard'));
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return view('auth.index');
     }
 
-    public function register()
+    public function authenticate(Request $request)
     {
-        return view('auth.register');
-    }
-
-    public function doRegister(Request $request)
-    {
-        $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required'],
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'member'
+        if ($validator->fails()) {
+            return redirect(route('login'))
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $isAuth = Auth::attempt([
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ]);
-        return redirect('login')->with('success', 'Berhasil daftar silahkan login');
+
+        if (!$isAuth) {
+            return redirect(route('login'))
+                ->withErrors(['auth_failed' => true]);
+        }
+
+        return redirect()->to(route('dashboard'));
     }
 
-    public function dologout(Request $request)
+    public function logout()
     {
         Auth::logout();
-        $request->session()->invalidate();
+        Session::flush();
 
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+        return redirect()->to(route('login'));
     }
 }

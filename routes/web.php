@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\PortofolioController;
-use App\Http\Controllers\ProfilController;
-
+use App\Http\Controllers\TentangKamiController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,27 +18,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::post('dologin', [AuthController::class, 'doLogin']);
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::post('doregister', [AuthController::class, 'doRegister']);
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get("/", function () {
+    return redirect()->to(route("login"));
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::post('dologout', [AuthController::class, 'dologout'])->name('dologout');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::resources([
-        'user' => UserController::class, 'setting' => SettingController::class, 'blog' => BlogController::class, 'portofolio' => PortofolioController::class, 'profil' => ProfilController::class
+Route::get("/login", [AuthController::class, "index"])->name("login");
+Route::get("/logout", [AuthController::class, "logout"])->name("logout");
+Route::post("/authenticate", [AuthController::class, "authenticate"])->name(
+    "authenticate"
+);
 
-    ]);
-    Route::get('user-export', [UserController::class, 'export']);
-    Route::get('setting-export', [SettingController::class, 'export']);
-    Route::get('blog-export', [BlogController::class, 'export']);
-    Route::get('portofolio-export', [PortofolioController::class, 'export']);
-    Route::get('profil-export', [ProfilController::class, 'export']);
-});
+Route::prefix("/admin")
+    ->middleware("auth")
+    ->group(function () {
+        // Dashboard
+        Route::get("dashboard", [DashboardController::class, "index"])->name(
+            "dashboard"
+        );
+
+        // Profile
+        Route::get("profile", [ProfileController::class, "index"])->name(
+            "profile.index"
+        );
+        Route::get("profile/edit", [ProfileController::class, "edit"])->name(
+            "profile.edit"
+        );
+        Route::post("profile", [ProfileController::class, "save"])->name(
+            "profile.update"
+        );
+
+        // User
+        Route::resource("user", UserController::class);
+        Route::post("user/fetch", [UserController::class, "fetch"]);
+
+        // TentangKami
+        Route::get("tentang_kami", [
+            TentangKamiController::class,
+            "index",
+        ])->name("tentang_kami.index");
+        Route::get("tentang_kami/edit", [
+            TentangKamiController::class,
+            "edit",
+        ])->name("tentang_kami.edit");
+        Route::post("tentang_kami", [
+            TentangKamiController::class,
+            "save",
+        ])->name("tentang_kami.update");
+    });

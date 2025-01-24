@@ -2,164 +2,140 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\UserExport;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $user = User::query();
-        $sort = request('sort_val') ?? 'DESC';
-        if (request('sort_name') == 'name') {
-            $sort = $sort == 'DESC' ? 'ASC' : 'DESC';
-            $user->orderBy('name', request('sort_val'));
-        }
-
-        if (request('sort_name') == 'email') {
-            $sort = $sort == 'DESC' ? 'ASC' : 'DESC';
-            $user->orderBy('email', request('sort_val'));
-        }
-
-        if (request('sort_name') == 'email_verified_at') {
-            $sort = $sort == 'DESC' ? 'ASC' : 'DESC';
-            $user->orderBy('email_verified_at', request('sort_val'));
-        }
-
-        if (request('sort_name') == 'password') {
-            $sort = $sort == 'DESC' ? 'ASC' : 'DESC';
-            $user->orderBy('password', request('sort_val'));
-        }
-
-
-        if (request('cari')) {
-            $user->where(function ($q) {
-                $q->where('name', 'LIKE', '%' . request('cari') . '%')
-                    ->orWhere('email', 'LIKE', '%' . request('cari') . '%')
-                    ->orWhere('email_verified_at', 'LIKE', '%' . request('cari') . '%')
-                    ->orWhere('password', 'LIKE', '%' . request('cari') . '%');
-            });
-        }
-
-        $user = $user->orderBy('created_at', $sort)->paginate()->withQueryString();
-
-        return view('pages.user.list', [
-            'data' => $user->withPath('user'),
-            'sort' => $sort
-        ]);
+        return view("administrator.user.index");
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('pages.user.add');
+        return view("administrator.user.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function edit($id)
+    {
+        $user = User::where("id", $id)->first();
+        if (!$user) {
+            return abort(404);
+        }
+
+        return view("administrator.user.edit", [
+            "user" => $user,
+        ]);
+    }
+
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required', 'email' => 'required', 'email_verified_at' => 'required', 'password' => 'required'
-        ];
-
-        $messages = [
-            'name.required' => 'name wajib terisi', 'email.required' => 'email wajib terisi', 'email_verified_at.required' => 'email_verified_at wajib terisi', 'password.required' => 'password wajib terisi'
-        ];
-
-
-        $request->validate($rules, $messages);
-        $datarow = $request->all();
-
-        User::create($datarow);
-
-        return redirect('user');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        return view('pages.user.detail', [
-            'data' => $user
+        $validator = Validator::make($request->all(), [
+            "name" => "required",
+            "username" => "required",
+            "email" => "required",
+            "password" => "required",
         ]);
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        return view('pages.user.edit', [
-            'data' => $user
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        $rules = [
-            'name' => 'required', 'email' => 'required', 'email_verified_at' => 'required', 'password' => 'required'
-        ];
-
-        $messages = [
-            'name.required' => 'name wajib terisi', 'email.required' => 'email wajib terisi', 'email_verified_at.required' => 'email_verified_at wajib terisi', 'password.required' => 'password wajib terisi'
-        ];
-
-
-        $request->validate($rules, $messages);
-        $datarow = $request->all();
-
-        if (!$request->password) {
-            unset($datarow['password']);
+        if ($validator->fails()) {
+            return redirect(route("user.create"))
+                ->withErrors($validator)
+                ->withInput();
         }
-        $user->update($datarow);
 
-        return redirect('user');
+        $dataSave = [
+            "name" => $request->input("name"),
+            "username" => $request->input("username"),
+            "email" => $request->input("email"),
+            "password" => Hash::make($request->input("password")),
+        ];
+
+        try {
+            User::create($dataSave);
+            return redirect(route("user.index"))->with([
+                "dataSaved" => true,
+                "message" => "Data berhasil disimpan",
+            ]);
+        } catch (\Throwable $th) {
+            return redirect(route("user.index"))->with([
+                "dataSaved" => false,
+                "message" => "Terjadi kesalahan saat menyimpan data",
+            ]);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    public function fetch(Request $request)
     {
-        $user->delete();
-        return redirect('user');
+        $user = User::query();
+
+        return DataTables::of($user)->addIndexColumn()->make(true);
     }
 
-    public function export()
+    public function update(Request $request, $id)
     {
-        return Excel::download(new UserExport, 'users.xlsx');
+        $user = User::where("id", $id)->first();
+        if (!$user) {
+            return abort(404);
+        }
+
+        $validator = Validator::make($request->all(), [
+            "name" => "required",
+            "username" => "required",
+            "email" => "required",
+            "password" => "required",
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(route("user.edit", $id))
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $dataSave = [
+            "name" => $request->input("name"),
+            "username" => $request->input("username"),
+            "email" => $request->input("email"),
+            "password" => Hash::make($request->input("password")),
+        ];
+
+        try {
+            $user->update($dataSave);
+            return redirect(route("user.index"))->with([
+                "dataSaved" => true,
+                "message" => "Data berhasil diupdate",
+            ]);
+        } catch (\Throwable $th) {
+            return redirect(route("user.index"))->with([
+                "dataSaved" => false,
+                "message" => "Terjadi kesalahan saat mengupdate data",
+            ]);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $user = User::where("id", $id)->first();
+        if (!$user) {
+            return abort(404);
+        }
+
+        try {
+            $user->delete();
+            return redirect(route("user.index"))->with([
+                "dataSaved" => true,
+                "message" => "Data berhasil dihapus",
+            ]);
+        } catch (\Throwable $th) {
+            return redirect(route("user.index"))->with([
+                "dataSaved" => false,
+                "message" => "Terjadi kesalahan saat menghapus data",
+            ]);
+        }
     }
 }
