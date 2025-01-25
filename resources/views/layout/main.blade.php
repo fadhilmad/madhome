@@ -126,7 +126,7 @@
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle header-profile-user"
                                 src="{{ asset('assets/images/placeholder.jpg') }}" alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">Henry</span>
+                            <span class="d-none d-xl-inline-block ms-1">Profile</span>
                             <i class="fa fa-chevron-down d-none d-xl-inline-block ms-1" style="font-size: 10px;"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">

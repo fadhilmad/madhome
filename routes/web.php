@@ -3,6 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TentangKamiController;
+use App\Http\Controllers\ProjekController;
+use App\Http\Controllers\PerpanjangController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TypeProjekController;
+use App\Http\Controllers\StatusProjekController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -64,4 +69,37 @@ Route::prefix("/admin")
             TentangKamiController::class,
             "save",
         ])->name("tentang_kami.update");
+
+        // Projek
+        Route::resource("projek", ProjekController::class);
+        Route::post("projek/fetch", [ProjekController::class, "fetch"]);
+
+        // Perpanjang
+        Route::resource("perpanjang", PerpanjangController::class);
+        Route::post("perpanjang/fetch", [PerpanjangController::class, "fetch"]);
+
+        // Setting
+        Route::get("setting", [SettingController::class, "index"])->name(
+            "setting.index"
+        );
+        Route::get("setting/edit", [SettingController::class, "edit"])->name(
+            "setting.edit"
+        );
+        Route::post("setting", [SettingController::class, "save"])->name(
+            "setting.update"
+        );
+
+        // TypeProjek
+        Route::resource("type_projek", TypeProjekController::class);
+        Route::post("type_projek/fetch", [
+            TypeProjekController::class,
+            "fetch",
+        ]);
+
+        // StatusProjek
+        Route::resource("status_projek", StatusProjekController::class);
+        Route::post("status_projek/fetch", [
+            StatusProjekController::class,
+            "fetch",
+        ]);
     });
