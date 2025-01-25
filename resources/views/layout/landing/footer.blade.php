@@ -14,27 +14,31 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
-                <h4 class="text-white mb-4">Quick Link</h4>
-                <a class="btn btn-link" href="#">About Us</a>
-                <a class="btn btn-link" href="#">Contact Us</a>
-                <a class="btn btn-link" href="#">Privacy Policy</a>
-                <a class="btn btn-link" href="#">Terms & Condition</a>
-                <a class="btn btn-link" href="#">Career</a>
+                <h4 class="text-white mb-4">Tautan Cepat</h4>
+                <a class="btn btn-link" href="#">Tentang Kami</a>
+                <a class="btn btn-link" href="#">Hubungi Kami</a>
+                <a class="btn btn-link" href="#">Kebijakan Privasi</a>
+                <a class="btn btn-link" href="#">Syarat & Kondisi</a>
+                <a class="btn btn-link" href="#">Karier</a>
             </div>
             <div class="col-md-6 col-lg-3">
-                <h4 class="text-white mb-4">Popular Link</h4>
-                <a class="btn btn-link" href="#">About Us</a>
-                <a class="btn btn-link" href="#">Contact Us</a>
-                <a class="btn btn-link" href="#">Privacy Policy</a>
-                <a class="btn btn-link" href="#">Terms & Condition</a>
-                <a class="btn btn-link" href="#">Career</a>
+                <h4 class="text-white mb-4">Tautan Populer</h4>
+                <a class="btn btn-link" href="#">Tentang Kami</a>
+                <a class="btn btn-link" href="#">Hubungi Kami</a>
+                <a class="btn btn-link" href="#">Kebijakan Privasi</a>
+                <a class="btn btn-link" href="#">Syarat & Kondisi</a>
+                <a class="btn btn-link" href="#">Karier</a>
             </div>
             <div class="col-md-6 col-lg-3">
-                <h4 class="text-white mb-4">Newsletter</h4>
-                <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
+                <h4 class="text-white mb-4">Informasi</h4>
+                <p>Informasi terbaru mengenai produk dan layanan kami</p>
                 <div class="position-relative w-100 mt-3">
-                    <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                    <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary-gradient fs-4"></i></button>
+                    {{-- <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Email Kamu" style="height: 48px;">
+                    <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary-gradient fs-4"></i></button> --}}
+
+                    <a href="https://api.whatsapp.com/send?phone=+6281803437657&text=Halo%20MadHome%2C%20saya%20ingin%20bertanya%20mengenai%20produk%20dan%20layanan%20kamu." class="btn btn-light rounded-pill w-100 d-flex align-items-center justify-content-center" style="height: 48px;" target="_blank">
+                        <i class="fab fa-whatsapp text-success fs-4 me-2"></i> Kirim Pesan
+                    </a>
                 </div>
             </div>
         </div>
@@ -43,16 +47,14 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+                    &copy; <a class="border-bottom" href="#">MadHome</a>, All Right Reserved. 
                     
                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com/">HTML Codex</a>
-                    </br>
-                    Distributed By <a class="border-bottom" href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+                    Designed By <a class="border-bottom" href="3">MadHome</a> {{ date('Y') }}
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu">
-                        <a href="#">Home</a>
+                        <a href="#">Beranda</a>
                         <a href="#">Cookies</a>
                         <a href="#">Help</a>
                         <a href="#">FQAs</a>
