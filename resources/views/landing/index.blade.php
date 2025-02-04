@@ -8,7 +8,7 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-primary-gradient fw-medium">Tentang Kami</h5>
                     <h1 class="mb-4">Tentang Madhome</h1>
-                    <p class="mb-4">Madhome adalah perusahaan teknologi yang berfokus pada pengembangan solusi digital inovatif untuk membantu bisnis dan individu beradaptasi di era transformasi digital. Kami menyediakan layanan pengembangan perangkat lunak, aplikasi mobile, website, dan solusi IT lainnya yang dirancang untuk memenuhi kebutuhan spesifik Anda.
+                    <p class="mb-4">Madhome adalah team teknologi yang berfokus pada pengembangan solusi digital inovatif untuk membantu bisnis dan individu beradaptasi di era transformasi digital. Kami menyediakan layanan pengembangan perangkat lunak, aplikasi mobile, website, dan solusi IT lainnya yang dirancang untuk memenuhi kebutuhan spesifik Anda.
                         Didukung oleh tim developer berpengalaman dan teknologi terkini, kami berkomitmen untuk menghadirkan produk yang tidak hanya fungsional tetapi juga andal, aman, dan efisien.</p>
 
                     <h1 class="mb-4">Visi Kami</h1>
@@ -150,7 +150,7 @@
         <div class="container py-5 px-lg-5">
             <div class="text-center pb-4 wow fadeInUp" data-wow-delay="0.1s">
                 <h5 class="text-primary-gradient fw-medium">Alur Development</h5>
-                <h1 class="mb-5">5 Langkah Pembuatan Aplikasi</h1>
+                <h1 class="mb-5">Alur Pembuatan Aplikasi</h1>
             </div>
             <div class="row gy-5 gx-4 justify-content-center">
                 <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp" data-wow-delay="0.1s">
