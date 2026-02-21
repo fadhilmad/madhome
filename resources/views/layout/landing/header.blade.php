@@ -14,6 +14,7 @@
                 <a href="#feature" class="nav-item nav-link">Layanan Kami</a>
                 <a href="#pricing" class="nav-item nav-link">Price List</a>
                 <a href="#review" class="nav-item nav-link">Testimonial</a>
+                <a href="#portfolio" class="nav-item nav-link">Portofolio</a>
                 <a href="#contact" class="nav-item nav-link">Hubungi Kami</a>
             </div>
             {{-- <a href="#" class="btn btn-primary-gradient rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Pesan Sekarang</a> --}}

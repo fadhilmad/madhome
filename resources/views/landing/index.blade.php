@@ -158,8 +158,8 @@
                         Fokus pada solusi yang mudah dikembangkan dan terjamin keamanannya.</p>
                     <p><i class="fa fa-check text-primary-gradient me-3"></i>Pendekatan Kustom: Kami memahami bahwa setiap
                         klien memiliki kebutuhan yang unik.</p>
-                    <a href="#pricing" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3">Price
-                        List</a>
+                    <a href="#portfolio" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 rounded-pill mt-3">Lihat
+                        Portofolio</a>
                 </div>
                 <div class="col-lg-4 d-flex justify-content-center justify-content-lg-end wow fadeInUp"
                     data-wow-delay="0.3s">
@@ -200,7 +200,7 @@
                     <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-secondary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
                             style="width: 100px; height: 100px;">
-                            <i class="fa fa-address-card fa-3x text-white"></i>
+                            <i class="fa fa-palette fa-3x text-white"></i>
                         </div>
                         <h5 class="mt-4 mb-3">Desain Aplikasi</h5>
                         <p class="mb-0">Desain aplikasi mencakup pembuatan wireframe untuk alur navigasi, pengembangan
@@ -211,7 +211,7 @@
                     <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
                             style="width: 100px; height: 100px;">
-                            <i class="fa fa-check fa-3x text-white"></i>
+                            <i class="fa fa-code-branch fa-3x text-white"></i>
                         </div>
                         <h5 class="mt-4 mb-3">Pengembangan Aplikasi</h5>
                         <p class="mb-0">Pengembangan aplikasi meliputi pemilihan teknologi, pengembangan frontend dan
@@ -222,7 +222,7 @@
                     <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
                             style="width: 100px; height: 100px;">
-                            <i class="fa fa-check fa-3x text-white"></i>
+                            <i class="fa fa-bug fa-3x text-white"></i>
                         </div>
                         <h5 class="mt-4 mb-3">Pengujian (Testing)</h5>
                         <p class="mb-0">Pengujian mencakup QA untuk memastikan fungsi aplikasi, uji kenyamanan pengguna,
@@ -233,7 +233,7 @@
                     <div class="position-relative bg-light rounded pt-5 pb-4 px-4">
                         <div class="d-inline-flex align-items-center justify-content-center bg-primary-gradient rounded-circle position-absolute top-0 start-50 translate-middle shadow"
                             style="width: 100px; height: 100px;">
-                            <i class="fa fa-check fa-3x text-white"></i>
+                            <i class="fa fa-rocket fa-3x text-white"></i>
                         </div>
                         <h5 class="mt-4 mb-3">Peluncuran Aplikasi</h5>
                         <p class="mb-0">Peluncuran aplikasi meliputi persiapan sesuai standar platform, distribusi di
@@ -245,47 +245,65 @@
     </div>
     <!-- Process Start -->
 
-
-    <!-- Download Start -->
-    <div class="container-xxl py-5">
+    {{-- portfolio --}}
+    <div class="container-xxl py-5" id="portfolio">
         <div class="container py-5 px-lg-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <img class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
-                        src="{{ asset('/landing/FitApp/img/about.png') }}">
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h5 class="text-primary-gradient fw-medium">Download</h5>
-                    <h1 class="mb-4">Download The Latest Version Of Our App</h1>
-                    <p class="mb-4">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat
-                        ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo eirmod magna dolore erat amet
-                    </p>
-                    <div class="row g-4">
-                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
-                            <a href="#" class="d-flex bg-primary-gradient rounded py-3 px-4">
-                                <i class="fab fa-apple fa-3x text-white flex-shrink-0"></i>
-                                <div class="ms-3">
-                                    <p class="text-white mb-0">Available On</p>
-                                    <h5 class="text-white mb-0">App Store</h5>
-                                </div>
-                            </a>
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="text-primary-gradient fw-medium">Portofolio</h5>
+                <h1 class="mb-5">Portofolio Kami</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+
+                <a href="#" style="text-decoration: none; color: inherit;">
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}"
+                                style="width: 100%; height: 100%;">
                         </div>
-                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
-                            <a href="#" class="d-flex bg-secondary-gradient rounded py-3 px-4">
-                                <i class="fab fa-android fa-3x text-white flex-shrink-0"></i>
-                                <div class="ms-3">
-                                    <p class="text-white mb-0">Available On</p>
-                                    <h5 class="text-white mb-0">Play Store</h5>
-                                </div>
-                            </a>
-                        </div>
+                        <h5 class="mb-1">FriendArt Clothing</h5>
+                        <p class="mb-0">Sistem untuk manajemen toko pakaian</p>
                     </div>
-                </div>
+                </a>
+
+                <a href="#" style="text-decoration: none; color: inherit;">
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}"
+                                style="width: 100%; height: 100%;">
+                        </div>
+                        <h5 class="mb-1">FriendArt Clothing</h5>
+                        <p class="mb-0">Sistem untuk manajemen toko pakaian</p>
+                    </div>
+                </a>
+
+                <a href="#" style="text-decoration: none; color: inherit;">
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}"
+                                style="width: 100%; height: 100%;">
+                        </div>
+                        <h5 class="mb-1">FriendArt Clothing</h5>
+                        <p class="mb-0">Sistem untuk manajemen toko pakaian</p>
+                    </div>
+                </a>
+
+                <a href="#" style="text-decoration: none; color: inherit;">
+                    <div class="testimonial-item rounded p-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
+                                src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}"
+                                style="width: 100%; height: 100%;">
+                        </div>
+                        <h5 class="mb-1">FriendArt Clothing</h5>
+                        <p class="mb-0">Sistem untuk manajemen toko pakaian</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-    <!-- Download End -->
-
 
     <!-- Pricing Start -->
     <div class="container-xxl py-5" id="pricing">
@@ -487,7 +505,8 @@
                 <div class="testimonial-item rounded p-4">
                     <div class="d-flex align-items-center mb-4">
                         <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
-                            src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}" style="width: 85px; height: 85px;">
+                            src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}"
+                            style="width: 85px; height: 85px;">
                         <div class="ms-4">
                             <h5 class="mb-1">Agus Herlino</h5>
                             <div>
@@ -504,7 +523,8 @@
                 <div class="testimonial-item rounded p-4">
                     <div class="d-flex align-items-center mb-4">
                         <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
-                            src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}" style="width: 85px; height: 85px;">
+                            src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}"
+                            style="width: 85px; height: 85px;">
                         <div class="ms-4">
                             <h5 class="mb-1">Agus Herlino</h5>
                             <div>
@@ -521,7 +541,8 @@
                 <div class="testimonial-item rounded p-4">
                     <div class="d-flex align-items-center mb-4">
                         <img class="img-fluid bg-white rounded flex-shrink-0 p-1"
-                            src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}" style="width: 85px; height: 85px;">
+                            src="{{ asset('/landing/FitApp/img/testimonial-1.jpg') }}"
+                            style="width: 85px; height: 85px;">
                         <div class="ms-4">
                             <h5 class="mb-1">Agus Herlino</h5>
                             <div>
